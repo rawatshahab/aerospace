@@ -143,7 +143,7 @@ const WhyChooseUs = () => {
             <div className="absolute inset-0 bg-aero-blue/5 rounded-2xl rotate-3 transform-gpu"></div>
             <div className="glass-card p-1 rounded-2xl -rotate-3 transform-gpu relative">
               <img 
-                src="https://images.unsplash.com/photo-1566055909643-a51b4271d2bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                src="https://images.unsplash.com/photo-1559297434-fae8a1916a79?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                 alt="Aerospace technology and innovation" 
                 className="rounded-xl object-cover w-full h-full aspect-[4/3]"
                 loading="lazy"

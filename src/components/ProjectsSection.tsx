@@ -115,7 +115,7 @@ const ProjectsSection = () => {
     {
       title: "Project AeroTech – Future of Smart Aviation",
       description: "Intelligent aviation systems that integrate AI and IoT for safer, more efficient air travel experiences.",
-      image: "https://images.unsplash.com/photo-1562603825-77f2a45de092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      image: "https://images.unsplash.com/photo-1559297434-fae8a1916a79?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     }
   ];
   

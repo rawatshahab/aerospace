@@ -1,16 +1,27 @@
+import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import AboutUs from "./pages/AboutUs";
-import Services from "./pages/Services";
-import Blog from "./pages/Blog";
-import Projects from "./pages/Projects";
-import Testimonials from "./pages/Testimonials";
-import ContactPage from "./pages/ContactPage";
+
+// Lazy load page components
+const Index = lazy(() => import("./pages/Index"));
+const Services = lazy(() => import("./pages/Services"));
+const AboutUs = lazy(() => import("./pages/AboutUs"));
+const Blog = lazy(() => import("./pages/Blog"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Testimonials = lazy(() => import("./pages/Testimonials"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+
+// Loading fallback component
+const LoadingFallback = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-aero-blue"></div>
+  </div>
+);
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -19,16 +30,19 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/contactpage" element={<ContactPage />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<LoadingFallback />}>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/contacpage" element={<ContactPage />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

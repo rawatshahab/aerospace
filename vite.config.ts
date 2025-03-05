@@ -19,4 +19,19 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    chunkSizeWarningLimit: 1000, // Increase from default 500kb to 1000kb
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
+          ui: [
+            '@radix-ui/react-toast',
+            '@radix-ui/react-tooltip',
+            '@radix-ui/react-dialog',
+          ]
+        }
+      }
+    }
+  }
 }));

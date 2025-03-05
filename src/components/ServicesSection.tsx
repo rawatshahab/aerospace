@@ -144,7 +144,7 @@ const ServicesSection = () => {
         </div>
         
         <div className="mt-16 text-center">
-          <Button className="bg-aero-blue hover:bg-aero-lightblue text-white transition-all duration-300">
+          <Button onClick={() => window.location.href="/services"} className="bg-aero-blue hover:bg-aero-lightblue text-white transition-all duration-300">
             View All Services
           </Button>
         </div>

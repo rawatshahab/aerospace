@@ -49,7 +49,7 @@ const NavBar = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="#" className="flex items-center">
+            <a href="/" className="flex items-center">
               <span className="text-2xl font-display font-bold text-aero-blue">
                 Wings of Aero
               </span>
@@ -59,31 +59,37 @@ const NavBar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => scrollToSection("services")}
+              onClick={() => window.location.href = "/services"}
               className="text-foreground hover:text-aero-blue font-medium transition-colors"
             >
               Services
             </button>
             <button
-              onClick={() => scrollToSection("why-choose")}
+              onClick={() => window.location.href = "/about" }
               className="text-foreground hover:text-aero-blue font-medium transition-colors"
             >
-              Why Choose Us
+              About us
             </button>
             <button
-              onClick={() => scrollToSection("projects")}
+              onClick={() => window.location.href = "/projects"}
               className="text-foreground hover:text-aero-blue font-medium transition-colors"
             >
               Projects
             </button>
             <button
-              onClick={() => scrollToSection("testimonials")}
+              onClick={() => window.location.href = "/testimonials"}
               className="text-foreground hover:text-aero-blue font-medium transition-colors"
             >
               Testimonials
             </button>
+            <button
+              onClick={() => window.location.href = "/blog"}
+              className="text-foreground hover:text-aero-blue font-medium transition-colors"
+            >
+              Blog
+            </button>
             <Button 
-              onClick={() => scrollToSection("contact")}
+              onClick={() => window.location.href = "/contactpage"}
               className="bg-aero-blue hover:bg-aero-lightblue text-white transition-all duration-300"
             >
               Get in Touch
@@ -111,31 +117,37 @@ const NavBar = () => {
         <div className="md:hidden bg-white/95 backdrop-blur-md shadow-lg">
           <div className="px-4 pt-2 pb-6 space-y-2 flex flex-col">
             <button
-              onClick={() => scrollToSection("services")}
+              onClick={() => window.location.href = "/services"}
               className="py-3 text-foreground hover:text-aero-blue font-medium transition-colors"
             >
               Services
             </button>
             <button
-              onClick={() => scrollToSection("why-choose")}
+              onClick={() => window.location.href = "/about" }
               className="py-3 text-foreground hover:text-aero-blue font-medium transition-colors"
             >
-              Why Choose Us
+              About Us
             </button>
             <button
-              onClick={() => scrollToSection("projects")}
+              onClick={() => window.location.href = "/projects"}
               className="py-3 text-foreground hover:text-aero-blue font-medium transition-colors"
             >
               Projects
             </button>
             <button
-              onClick={() => scrollToSection("testimonials")}
+              onClick={() => window.location.href = "/testimonials"}
               className="py-3 text-foreground hover:text-aero-blue font-medium transition-colors"
             >
               Testimonials
             </button>
+            <button
+              onClick={() => window.location.href = "/blog"}
+              className="py-3 text-foreground hover:text-aero-blue font-medium transition-colors"
+            >
+              Blog
+            </button>
             <Button 
-              onClick={() => scrollToSection("contact")}
+              onClick={() => window.location.href = "/contactpage"}
               className="mt-2 bg-aero-blue hover:bg-aero-lightblue text-white transition-all duration-300"
             >
               Get in Touch

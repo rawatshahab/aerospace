@@ -5,9 +5,10 @@ import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import ProjectsSection from "@/components/ProjectsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import ContactSection from "@/components/ContactSection";
+
+
 import Footer from "@/components/Footer";
+
 
 const Index = () => {
   // For scroll reveal animations
@@ -43,8 +44,8 @@ const Index = () => {
       <ServicesSection />
       <WhyChooseUs />
       <ProjectsSection />
-      <TestimonialsSection />
-      <ContactSection />
+
+
       <Footer />
     </div>
   );

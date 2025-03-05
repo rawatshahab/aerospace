@@ -73,19 +73,19 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors">About Us</a>
+                <a href="/about" className="text-white/80 hover:text-white transition-colors">About Us</a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors">Services</a>
+                <a href="/services" className="text-white/80 hover:text-white transition-colors">Services</a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors">Projects</a>
+                <a href="/projects" className="text-white/80 hover:text-white transition-colors">Projects</a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors">Testimonials</a>
+                <a href="/testimonials" className="text-white/80 hover:text-white transition-colors">Testimonials</a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors">Contact</a>
+                <a href="/contactpage" className="text-white/80 hover:text-white transition-colors">Contact</a>
               </li>
             </ul>
           </div>
@@ -94,7 +94,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-6">Services</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors">Aerospace Research</a>
+                <a href="/" className="text-white/80 hover:text-white transition-colors">Aerospace Research</a>
               </li>
               <li>
                 <a href="#" className="text-white/80 hover:text-white transition-colors">Engineering Training</a>

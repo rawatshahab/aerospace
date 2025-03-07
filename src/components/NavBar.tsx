@@ -1,11 +1,25 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { 
+  Rocket, 
+  GraduationCap,
+  Plane,
+  Briefcase,
+  Satellite 
+} from "lucide-react";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   // Handle scroll effect
   useEffect(() => {
@@ -21,21 +35,34 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle smooth scroll to section
+  // Handle smooth scroll to section or use router navigation
   const scrollToSection = (sectionId: string) => {
     setMobileMenuOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerOffset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    
+    // If we're on the homepage, scroll to section
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const headerOffset = 100;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
     }
   };
+  
+  // Service items for dropdown
+  const serviceItems = [
+    { name: "Aerospace Research & Innovation", icon: <Rocket className="h-4 w-4 mr-2" />, path: "/services#research" },
+    { name: "Aeronautical Engineering Training", icon: <GraduationCap className="h-4 w-4 mr-2" />, path: "/services#training" },
+    { name: "UAV & Drone Development", icon: <Plane className="h-4 w-4 mr-2" />, path: "/services#drones" },
+    { name: "Industry Consultancy & Solutions", icon: <Briefcase className="h-4 w-4 mr-2" />, path: "/services#consultancy" },
+    { name: "Space System Engineering", icon: <Satellite className="h-4 w-4 mr-2" />, path: "/services#space" },
+  ];
 
   return (
     <nav
@@ -49,51 +76,75 @@ const NavBar = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <span className="text-2xl font-display font-bold text-aero-blue">
                 Wings of Aero
               </span>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => window.location.href = "/services"}
-              className="text-foreground hover:text-aero-blue font-medium transition-colors"
-            >
-              Services
-            </button>
-            <button
-              onClick={() => window.location.href = "/about" }
-              className="text-foreground hover:text-aero-blue font-medium transition-colors"
-            >
-              About us
-            </button>
-            <button
-              onClick={() => window.location.href = "/projects"}
+            {/* Services Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center text-foreground hover:text-aero-blue font-medium transition-colors focus:outline-none">
+                Services <ChevronDown className="ml-1 h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-white w-72 shadow-md border border-gray-200 rounded-md p-1 z-50">
+                {serviceItems.map((service, index) => (
+                  <DropdownMenuItem key={index} className="p-0">
+                    <Link
+                      to={service.path}
+                      className="flex items-center px-3 py-2.5 w-full rounded-md hover:bg-gray-100 transition-colors"
+                    >
+                      {service.icon}
+                      <span>{service.name}</span>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+                <DropdownMenuItem className="pt-2 pb-1 border-t border-gray-100 mt-1">
+                  <Link
+                    to="/services"
+                    className="flex justify-between items-center w-full rounded-md hover:text-aero-blue transition-colors px-3"
+                  >
+                    <span className="font-medium">View All Services</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
+            <Link
+              to="/projects"
               className="text-foreground hover:text-aero-blue font-medium transition-colors"
             >
               Projects
-            </button>
-            <button
-              onClick={() => window.location.href = "/testimonials"}
+            </Link>
+            <Link
+              to="/testimonials"
               className="text-foreground hover:text-aero-blue font-medium transition-colors"
             >
               Testimonials
-            </button>
-            <button
-              onClick={() => window.location.href = "/blog"}
+            </Link>
+            <Link
+              to="/about"
+              className="text-foreground hover:text-aero-blue font-medium transition-colors"
+            >
+              About Us
+            </Link>
+            <Link
+              to="/blog"
               className="text-foreground hover:text-aero-blue font-medium transition-colors"
             >
               Blog
-            </button>
-            <Button 
-              onClick={() => window.location.href = "/contactpage"}
-              className="bg-aero-blue hover:bg-aero-lightblue text-white transition-all duration-300"
-            >
-              Get in Touch
-            </Button>
+            </Link>
+            <Link to="/contact">
+              <Button 
+                className="bg-aero-blue hover:bg-aero-lightblue text-white transition-all duration-300"
+              >
+                Get in Touch
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -115,43 +166,63 @@ const NavBar = () => {
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white/95 backdrop-blur-md shadow-lg">
-          <div className="px-4 pt-2 pb-6 space-y-2 flex flex-col">
-            <button
-              onClick={() => window.location.href = "/services"}
+          <div className="px-4 pt-2 pb-6 space-y-1 flex flex-col">
+            <div className="py-2 border-b border-gray-100">
+              <div className="flex items-center mb-2 text-aero-blue font-medium">
+                <span>Services</span>
+              </div>
+              
+              {serviceItems.map((service, index) => (
+                <Link
+                  key={index}
+                  to={service.path}
+                  className="py-2 px-3 flex items-center text-foreground hover:text-aero-blue font-medium transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {service.icon}
+                  <span className="text-sm">{service.name}</span>
+                </Link>
+              ))}
+            </div>
+
+            <Link
+              to="/projects"
               className="py-3 text-foreground hover:text-aero-blue font-medium transition-colors"
-            >
-              Services
-            </button>
-            <button
-              onClick={() => window.location.href = "/about" }
-              className="py-3 text-foreground hover:text-aero-blue font-medium transition-colors"
-            >
-              About Us
-            </button>
-            <button
-              onClick={() => window.location.href = "/projects"}
-              className="py-3 text-foreground hover:text-aero-blue font-medium transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
             >
               Projects
-            </button>
-            <button
-              onClick={() => window.location.href = "/testimonials"}
+            </Link>
+            <Link
+              to="/testimonials"
               className="py-3 text-foreground hover:text-aero-blue font-medium transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
             >
               Testimonials
-            </button>
-            <button
-              onClick={() => window.location.href = "/blog"}
+            </Link>
+            <Link
+              to="/about"
               className="py-3 text-foreground hover:text-aero-blue font-medium transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About Us
+            </Link>
+            <Link
+              to="/blog"
+              className="py-3 text-foreground hover:text-aero-blue font-medium transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
             >
               Blog
-            </button>
-            <Button 
-              onClick={() => window.location.href = "/contactpage"}
-              className="mt-2 bg-aero-blue hover:bg-aero-lightblue text-white transition-all duration-300"
+            </Link>
+            <Link
+              to="/contact"
+              onClick={() => setMobileMenuOpen(false)}
             >
-              Get in Touch
-            </Button>
+              <Button 
+                className="mt-2 bg-aero-blue hover:bg-aero-lightblue text-white transition-all duration-300"
+              >
+                Get in Touch
+              </Button>
+            </Link>
           </div>
         </div>
       )}

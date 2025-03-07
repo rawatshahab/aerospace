@@ -1,58 +1,92 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
-import { Rocket, GraduationCap, Plane, Briefcase, Satellite, ArrowRight } from 'lucide-react';
+import { 
+  Rocket, 
+  GraduationCap, 
+  Plane, 
+  Briefcase, 
+  Satellite,
+  ArrowRight 
+} from 'lucide-react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import ServiceDetail from '../components/ServiceDetail';
 import { Button } from '@/components/ui/button';
-
-const ServiceCard = ({ icon, title, description, delay = 0 }) => {
-  return (
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay }}
-      className="glass-card rounded-xl p-6 shadow-lg border border-aero-blue/10 hover:border-aero-blue/30 transition-all duration-300"
-    >
-      <div className="w-14 h-14 rounded-full bg-aero-blue/10 flex items-center justify-center text-aero-blue mb-6">
-        {icon}
-      </div>
-      <h3 className="text-xl font-bold mb-3 text-aero-blue">{title}</h3>
-      <p className="text-foreground mb-6 leading-relaxed">{description}</p>
-      <a href="#" className="flex items-center text-aero-blue font-medium hover:text-aero-lightblue transition-colors">
-        Learn more <ArrowRight className="ml-2 h-4 w-4" />
-      </a>
-    </motion.div>
-  );
-};
 
 const Services = () => {
   const servicesData = [
     {
-      icon: <Rocket className="h-7 w-7" />,
+      icon: <Rocket className="h-6 w-6" />,
       title: "Aerospace Research & Innovation",
-      description: "We conduct cutting-edge research in aerodynamics, propulsion, and aviation systems to develop next-generation aerospace technology."
+      subtitle: "Advancing the future of aerospace through cutting-edge research and breakthrough innovations.",
+      benefits: [
+        "Conducting in-depth research in aerodynamics, propulsion, and avionics",
+        "Developing futuristic aircraft and space vehicle technologies",
+        "Collaborating with global aerospace firms and universities",
+        "Providing research support for students and professionals"
+      ],
+      ctaText: "Transform Ideas into Aerospace Innovations!",
+      ctaLink: "#research",
+      imageUrl: "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2"
     },
     {
-      icon: <GraduationCap className="h-7 w-7" />,
+      icon: <GraduationCap className="h-6 w-6" />,
       title: "Aeronautical Engineering Training",
-      description: "Our industry-focused training programs provide students and professionals with hands-on experience and globally recognized certifications."
+      subtitle: "Comprehensive training programs to shape the next generation of aerospace professionals.",
+      benefits: [
+        "Industry-focused certification courses in aerodynamics, avionics, and propulsion",
+        "Hands-on experience with aircraft design, simulation, and flight testing",
+        "Expert-led workshops and online learning opportunities",
+        "Internship and placement support for aspiring aeronautical engineers"
+      ],
+      ctaText: "Upgrade Your Skills for an Exciting Aerospace Career!",
+      ctaLink: "#training",
+      imageUrl: "https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      reverse: true
     },
     {
-      icon: <Plane className="h-7 w-7" />,
+      icon: <Plane className="h-6 w-6" />,
       title: "UAV & Drone Development",
-      description: "We specialize in designing and developing high-performance unmanned aerial vehicles for defense, commercial, and research applications."
+      subtitle: "Engineering high-performance UAVs and drone systems for commercial and defense applications.",
+      benefits: [
+        "Design and development of autonomous and semi-autonomous drones",
+        "Custom UAV solutions for surveillance, mapping, and research",
+        "Training programs on drone technology, flight operations, and regulations",
+        "Advanced software integration for UAV navigation and control"
+      ],
+      ctaText: "Discover the Future of Unmanned Aerial Systems!",
+      ctaLink: "#drones",
+      imageUrl: "https://images.unsplash.com/photo-1508444845599-5c89863b1c44"
     },
     {
-      icon: <Briefcase className="h-7 w-7" />,
+      icon: <Briefcase className="h-6 w-6" />,
       title: "Industry Consultancy & Solutions",
-      description: "We offer consultancy services for aerospace firms, including project management, feasibility studies, and technical solutions."
+      subtitle: "Providing expert guidance and project solutions for aerospace enterprises.",
+      benefits: [
+        "Consulting services for aerospace design, manufacturing, and testing",
+        "Technical feasibility studies and research analysis",
+        "Aerospace project management and execution strategies",
+        "Compliance with international aviation safety standards"
+      ],
+      ctaText: "Optimize Your Aerospace Projects with Our Expertise!",
+      ctaLink: "#consultancy",
+      imageUrl: "https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      reverse: true
     },
     {
-      icon: <Satellite className="h-7 w-7" />,
+      icon: <Satellite className="h-6 w-6" />,
       title: "Space System Engineering",
-      description: "Our team is at the forefront of space exploration, developing satellite technologies and propulsion systems for future space missions."
+      subtitle: "Innovating satellite and propulsion systems to explore the universe.",
+      benefits: [
+        "Development of next-gen satellites and space propulsion technologies",
+        "Research in space exploration, orbital mechanics, and mission planning",
+        "Custom solutions for satellite communication and deep-space missions",
+        "Collaboration with space agencies and research institutions"
+      ],
+      ctaText: "Pushing the Limits of Space Exploration!",
+      ctaLink: "#space",
+      imageUrl: "https://images.unsplash.com/photo-1454789548928-9efd52dc4031"
     }
   ];
 
@@ -65,146 +99,92 @@ const Services = () => {
       
       <NavBar />
       
-      <main className="container mx-auto px-4 py-16">
+      <main>
         {/* Hero Section */}
-        <motion.section 
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20 text-center"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gradient">
-            Our Services
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Comprehensive solutions for all your aerospace needs
-          </p>
-        </motion.section>
-        
-        {/* Service Intro */}
-        <motion.section 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <div className="glass-card rounded-2xl p-8 shadow-lg">
-            <h2 className="text-3xl font-bold mb-6 text-aero-blue">Cutting-Edge Aerospace Services</h2>
-            <p className="text-lg leading-relaxed mb-6">
-              At Wings of Aero, we offer a comprehensive suite of aerospace services designed to meet the evolving needs of the aviation and space industry. Our team of experts combines decades of experience with innovative approaches to deliver exceptional results across all our service areas.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-              <div className="rounded-xl overflow-hidden shadow-lg">
-                <img 
-                  src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2" 
-                  alt="Aerospace research lab" 
-                  className="w-full h-64 object-cover"
-                />
+        <section className="bg-gradient-to-b from-aero-blue/5 to-white pt-32 pb-20">
+          <div className="container mx-auto px-4">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-center max-w-4xl mx-auto"
+            >
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gradient">
+                Our Services
+              </h1>
+              <p className="text-xl md:text-2xl text-foreground mb-8 leading-relaxed">
+                Empowering Aerospace Innovation with Cutting-Edge Solutions
+              </p>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12">
+                At Wings of Aero, we are committed to revolutionizing the aerospace industry through research, training, and technological advancements. Our specialized services cater to students, professionals, and organizations, helping them push the boundaries of aerospace engineering and innovation.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button className="bg-aero-blue hover:bg-aero-lightblue text-white px-6 py-3 h-auto text-lg">
+                  Schedule a Consultation
+                </Button>
+                <Button variant="outline" className="border-aero-blue text-aero-blue hover:bg-aero-blue/5 px-6 py-3 h-auto text-lg">
+                  View Success Stories
+                </Button>
               </div>
-              <div className="rounded-xl overflow-hidden shadow-lg">
-                <img 
-                  src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3" 
-                  alt="Engineering workspace" 
-                  className="w-full h-64 object-cover"
+            </motion.div>
+          </div>
+        </section>
+        
+        {/* Services Introduction */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-3xl font-bold mb-6 text-aero-blue">Our Key Services</h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Discover our comprehensive range of aerospace services designed to meet the evolving needs of students, professionals, and organizations in the industry.
+              </p>
+            </motion.div>
+            
+            <div className="space-y-4">
+              {servicesData.map((service, index) => (
+                <ServiceDetail
+                  key={index}
+                  icon={service.icon}
+                  title={service.title}
+                  subtitle={service.subtitle}
+                  benefits={service.benefits}
+                  ctaText={service.ctaText}
+                  ctaLink={service.ctaLink}
+                  imageUrl={service.imageUrl}
+                  reverse={service.reverse}
+                  delay={index * 0.1}
                 />
-              </div>
-            </div>
-          </div>
-        </motion.section>
-        
-        {/* Services Grid */}
-        <motion.section 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <h2 className="text-3xl font-bold mb-10 text-aero-blue text-center">Our Key Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {servicesData.map((service, index) => (
-              <ServiceCard 
-                key={index}
-                icon={service.icon}
-                title={service.title}
-                description={service.description}
-                delay={index * 0.1}
-              />
-            ))}
-          </div>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-12 text-center"
-          >
-            <Button className="bg-gradient-to-r from-aero-blue to-aero-lightblue hover:from-aero-blue/90 hover:to-aero-lightblue/90 text-white px-8 py-6 h-auto text-lg font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              Explore All Services
-            </Button>
-          </motion.div>
-        </motion.section>
-        
-        {/* Service Process */}
-        <motion.section 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <div className="glass-card rounded-2xl p-8 shadow-lg">
-            <h2 className="text-3xl font-bold mb-8 text-aero-blue">Our Service Process</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  step: "01",
-                  title: "Consultation",
-                  desc: "We begin with a thorough consultation to understand your specific needs and objectives."
-                },
-                {
-                  step: "02",
-                  title: "Custom Solution Design",
-                  desc: "Our experts design tailored solutions that leverage cutting-edge aerospace technology."
-                },
-                {
-                  step: "03",
-                  title: "Implementation & Support",
-                  desc: "We implement the solution and provide ongoing support to ensure optimal performance."
-                }
-              ].map((item, index) => (
-                <div key={index} className="relative pl-16 pr-4 py-4">
-                  <div className="absolute left-0 top-4 w-12 h-12 bg-aero-blue/20 rounded-lg flex items-center justify-center text-aero-blue font-bold text-xl">
-                    {item.step}
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-aero-blue">{item.title}</h3>
-                  <p className="text-foreground">{item.desc}</p>
-                </div>
               ))}
             </div>
           </div>
-        </motion.section>
+        </section>
         
         {/* Call to Action */}
-        <motion.section 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-10"
-        >
-          <div className="bg-gradient-to-r from-aero-blue to-aero-lightblue rounded-2xl p-8 shadow-xl text-white">
-            <h2 className="text-3xl font-bold mb-4">Ready to Elevate Your Aerospace Projects?</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Partner with Wings of Aero to access industry-leading expertise and innovative aerospace solutions.
-            </p>
-            <button className="px-8 py-3 bg-white text-aero-blue rounded-full text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              Request a Consultation
-            </button>
+        <section className="py-20 bg-aero-blue/5">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="bg-gradient-to-r from-aero-blue to-aero-lightblue rounded-2xl p-10 text-white text-center max-w-5xl mx-auto shadow-xl"
+            >
+              <h2 className="text-3xl font-bold mb-4">Ready to Elevate Your Aerospace Projects?</h2>
+              <p className="text-xl mb-8 max-w-3xl mx-auto">
+                Partner with Wings of Aero to access industry-leading expertise and innovative aerospace solutions tailored to your specific needs.
+              </p>
+              <Button className="bg-white text-aero-blue hover:bg-white/90 px-8 py-3 h-auto text-lg font-bold">
+                Get Started Today <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </motion.div>
           </div>
-        </motion.section>
+        </section>
       </main>
       
       <Footer />

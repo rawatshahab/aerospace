@@ -138,7 +138,7 @@ const NavBar = () => {
             >
               Blog
             </Link>
-            <Link to="/contact">
+            <Link to="/contactpage">
               <Button 
                 className="bg-aero-blue hover:bg-aero-lightblue text-white transition-all duration-300"
               >
